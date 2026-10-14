@@ -30,6 +30,13 @@
         padding: 10px;
         cursor: pointer;
       }
+      button.secondary {
+        margin-top: 8px;
+        background: transparent;
+        color: #25d366;
+        border: 1px solid #25d366;
+        padding: 9px;
+      }
       button:disabled {
         opacity: 0.5;
         cursor: default;
@@ -43,8 +50,9 @@
   </head>
   <body>
     <h1>Full chat screenshot</h1>
-    <p>Open a WhatsApp chat, then capture the entire conversation from the first message.</p>
+    <p>Open a WhatsApp chat, then capture the entire conversation, or start from a message you pick.</p>
     <button id="go">Capture full conversation</button>
+    <button id="pick" class="secondary">Capture from a message…</button>
     <div id="status"></div>
     <script src="popup.js"></script>
   </body>

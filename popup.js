@@ -1,18 +1,22 @@
-const go = document.getElementById("go");
+const buttons = [document.getElementById("go"), document.getElementById("pick")];
 const status = document.getElementById("status");
 
 function setStatus(t) {
   status.textContent = t;
 }
 
-go.addEventListener("click", async () => {
-  go.disabled = true;
+function setBusy(busy) {
+  buttons.forEach((b) => (b.disabled = busy));
+}
+
+async function start(fromMessage) {
+  setBusy(true);
   setStatus("");
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab || !/^https:\/\/web\.whatsapp\.com\//.test(tab.url || "")) {
       setStatus("Open web.whatsapp.com (and a chat) in this tab first.");
-      go.disabled = false;
+      setBusy(false);
       return;
     }
 
@@ -26,20 +30,27 @@ go.addEventListener("click", async () => {
     }
     if (!ping || !ping.hasChat) {
       setStatus("No chat is open. Open a conversation, then try again.");
-      go.disabled = false;
+      setBusy(false);
       return;
     }
 
-    const res = await chrome.tabs.sendMessage(tab.id, { type: "START_CAPTURE" });
+    const res = await chrome.tabs.sendMessage(tab.id, { type: "START_CAPTURE", fromMessage });
     if (res && res.ok) {
-      setStatus("Started. Watch the progress box on the page. You can close this popup.");
+      setStatus(
+        fromMessage
+          ? "Now click the message where the capture should start."
+          : "Started. Watch the progress box on the page. You can close this popup."
+      );
       setTimeout(() => window.close(), 1200);
     } else {
       setStatus("Could not start: " + (res ? res.error : "no response"));
-      go.disabled = false;
+      setBusy(false);
     }
   } catch (e) {
     setStatus("Error: " + (e && e.message ? e.message : e));
-    go.disabled = false;
+    setBusy(false);
   }
-});
+}
+
+buttons[0].addEventListener("click", () => start(false));
+buttons[1].addEventListener("click", () => start(true));

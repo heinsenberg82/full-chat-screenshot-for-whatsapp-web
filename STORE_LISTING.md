@@ -12,8 +12,8 @@ Full Chat Screenshot for WhatsApp Web
 
 ## Short description (≤132 chars)
 
-One-click capture of a full WhatsApp Web conversation as a stitched PNG, from
-the first message. No scrolling. 100% local.
+Capture a full WhatsApp Web conversation, or start from any message you pick,
+as one stitched PNG. No scrolling. 100% local.
 
 ## Detailed description
 
@@ -26,6 +26,8 @@ Manually screenshotting and scrolling is painful and leaves gaps.
 • Open any chat in WhatsApp Web and press the button.
 • The extension scrolls to the very first message (loading older messages
   automatically), then walks back down capturing the conversation.
+• Only need part of it? Choose "Capture from a message…", click the message to
+  start from, and the image runs from there to the end of the chat.
 • It stitches everything into a single tall PNG — bubbles, wallpaper,
   timestamps, exactly as WhatsApp renders them.
 • Very long chats are split automatically into numbered image parts.
@@ -44,7 +46,7 @@ Not affiliated with, endorsed by, or sponsored by WhatsApp or Meta.
 
 ## Single purpose
 
-> This extension has one purpose: to capture the user's currently open WhatsApp Web conversation and save it as a stitched PNG image. When the user clicks the toolbar button, it scrolls the open chat from the first message to the last, screenshots the visible area at each step, stitches the pieces into one full-conversation image (split into numbered parts if very tall), and saves it to the user's Downloads folder. It performs no other function.
+> This extension has one purpose: to capture the user's currently open WhatsApp Web conversation and save it as a stitched PNG image. When the user clicks the toolbar button, it scrolls the open chat from the first message (or from a message the user picks) to the last, screenshots the visible area at each step, stitches the pieces into one conversation image (split into numbered parts if very tall), and saves it to the user's Downloads folder. It performs no other function.
 
 ## Category
 
